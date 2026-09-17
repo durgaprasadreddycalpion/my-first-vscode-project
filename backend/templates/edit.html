@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit User</title>
+    <style>body { font-family: Arial, sans-serif; margin: 40px; }</style>
+</head>
+<body>
+
+    <h2>Edit User #{{ user.ID }}</h2>
+    
+    <form method="POST">
+        <label>Name:</label><br>
+        <input type="text" name="name" value="{{ user.Name }}" required><br><br>
+        
+        <label>Email:</label><br>
+        <input type="email" name="email" value="{{ user.Email }}" required><br><br>
+        
+        <button type="submit">Update User</button>
+        <a href="/">Cancel</a>
+    </form>
+
+</body>
+</html>

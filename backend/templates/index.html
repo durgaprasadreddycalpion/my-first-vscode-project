@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Python & Excel CRUD</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        th { background-color: #f4f4f4; }
+        .btn { padding: 5px 10px; text-decoration: none; border-radius: 3px; color: white; }
+        .btn-edit { background-color: #007bff; }
+        .btn-delete { background-color: #dc3545; }
+        form { margin-bottom: 20px; background: #f9f9f9; padding: 15px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+
+    <h2>Excel Database CRUD App</h2>
+
+    <!-- CREATE FORM -->
+    <form action="/add" method="POST">
+        <h3>Add New User</h3>
+        <input type="text" name="name" placeholder="Enter Name" required>
+        <input type="email" name="email" placeholder="Enter Email" required>
+        <button type="submit">Add User</button>
+    </form>
+
+    <!-- READ TABLE -->
+    <h3>Stored Users (From Excel)</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.ID }}</td>
+                <td>{{ user.Name }}</td>
+                <td>{{ user.Email }}</td>
+                <td>
+                    <a href="/edit/{{ user.ID }}" class="btn btn-edit">Edit</a>
+                    <a href="/delete/{{ user.ID }}" class="btn btn-delete" onclick="return confirm('Are you sure?')">Delete</a>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="4" style="text-align: center;">No users found in Excel file.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+</html>
